@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookCrafted - Your Personal Chef Booking Platform</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- EmailJS for email functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#" data-page="home">CookCrafted</a>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#" data-page="home" class="active">Home</a></li>
+                    <li><a href="#" data-page="chefs">Chefs</a></li>
+                    <li><a href="#" data-page="how-it-works">How It Works</a></li>
+                    <li><a href="#" data-page="cuisines">Cuisines</a></li>
+                    <li><a href="#" data-page="testimonials">Testimonials</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button id="login-button" class="btn-auth btn-login">Sign In</button>
+                <button id="register-button" class="btn-auth btn-register">Register</button>
+            </div>
+            
+            <button id="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="menu-icon"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+        <ul>
+            <li><a href="#" data-page="home" class="active">Home</a></li>
+            <li><a href="#" data-page="chefs">Chefs</a></li>
+            <li><a href="#" data-page="how-it-works">How It Works</a></li>
+            <li><a href="#" data-page="cuisines">Cuisines</a></li>
+            <li><a href="#" data-page="testimonials">Testimonials</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+        </ul>
+        <div class="mobile-auth">
+            <button id="mobile-login-button" class="btn-auth btn-login">Sign In</button>
+            <button id="mobile-register-button" class="btn-auth btn-register">Register</button>
+        </div>
+    </div>
+    
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        <!-- Flash messages will be dynamically added here by JS -->
+    </div>
+    
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home-section" class="page-section active" data-page="home">
+            <div id="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Find the Perfect <span class="highlight">Chef</span> for Your Culinary Experience</h1>
+                        <p>Book professional chefs for private dining, catering, cooking classes, and more</p>
+                        
+                        <div class="search-container">
+                            <form id="hero-search">
+                                <div class="search-group">
+                                    <select id="search-cuisine">
+                                        <option value="">Select Cuisine</option>
+                                        <option value="italian">Italian</option>
+                                        <option value="french">French</option>
+                                        <option value="indian">Indian</option>
+                                        <option value="japanese">Japanese</option>
+                                        <option value="mexican">Mexican</option>
+                                        <option value="mediterranean">Mediterranean</option>
+                                        <option value="middle-eastern">Middle Eastern</option>
+                                        <option value="asian">Pan-Asian</option>
+                                        <option value="vegetarian">Vegetarian & Vegan</option>
+                                    </select>
+                                </div>
+                                <div class="search-group">
+                                    <select id="search-service">
+                                        <option value="">Select Service</option>
+                                        <option value="private_dining">Private Dining</option>
+                                        <option value="catering">Catering</option>
+                                        <option value="cooking_class">Cooking Class</option>
+                                        <option value="meal_prep">Meal Preparation</option>
+                                    </select>
+                                </div>
+                                <button type="button" id="find-chefs-btn" class="btn btn-primary">Find Chefs</button>
+                            </form>
+                        </div>
+                        
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="number">150+</span>
+                                <span class="label">Professional Chefs</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">15+</span>
+                                <span class="label">Cuisine Types</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">5000+</span>
+                                <span class="label">Happy Customers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Culinary Experience">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="featured-chefs">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Featured <span class="highlight">Chefs</span></h2>
+                        <p>Discover our most talented and popular culinary experts</p>
+                    </div>
+                    
+                    <div class="chefs-grid">
+                        <!-- Chef Card 1 -->
+                        <div class="chef-card" data-cuisine="italian,mediterranean" data-speciality="pasta,seafood" data-rating="5">
+                            <div class="chef-image">
+                                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1677&q=80" alt="Chef Alessandro">
+                                <div class="rating">★★★★★ 5.0</div>
+                            </div>
+                            <div class="chef-info">
+                                <h3>Chef Alessandro</h3>
+                                <div class="cuisine-tags">
+                                    <span>Italian</span>
+                                    <span>Mediterranean</span>
+                                </div>
+                                <p class="experience">15 years experience • Worked in Michelin-starred restaurants</p>
+                                <p class="bio">Specializes in authentic Italian cuisine with a modern twist, focusing on fresh, seasonal ingredients and traditional techniques.</p>
+                                <div class="chef-footer">
+                                    <span class="price">From $150/event</span>
+                                    <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Alessandro">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chef Card 2 -->
+                        <div class="chef-card" data-cuisine="french,european" data-speciality="pastry,fine-dining" data-rating="5">
+                            <div class="chef-image">
+                                <img src="https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Chef Sophie">
+                                <div class="rating">★★★★★ 5.0</div>
+                            </div>
+                            <div class="chef-info">
+                                <h3>Chef Sophie</h3>
+                                <div class="cuisine-tags">
+                                    <span>French</span>
+                                    <span>European</span>
+                                </div>
+                                <p class="experience">12 years experience • Trained in Paris</p>
+                                <p class="bio">Expert in French gastronomy with a passion for pastry and desserts. Creates memorable dining experiences with elegant presentation.</p>
+                                <div class="chef-footer">
+                                    <span class="price">From $180/event</span>
+                                    <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Sophie">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chef Card 3 -->
+                        <div class="chef-card" data-cuisine="indian,asian" data-speciality="vegetarian,curry" data-rating="4">
+                            <div class="chef-image">
+                                <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Chef Priya">
+                                <div class="rating">★★★★☆ 4.8</div>
+                            </div>
+                            <div class="chef-info">
+                                <h3>Chef Priya</h3>
+                                <div class="cuisine-tags">
+                                    <span>Indian</span>
+                                    <span>Vegetarian</span>
+                                </div>
+                                <p class="experience">10 years experience • Specialty in vegetarian cuisine</p>
+                                <p class="bio">Specializes in authentic Indian flavors with a focus on vegetarian and vegan options. Expert in spice blending and regional specialties.</p>
+                                <div class="chef-footer">
+                                    <span class="price">From $120/event</span>
+                                    <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Priya">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary" data-page="chefs">View All Chefs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="home-cuisines">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Explore <span class="highlight">Cuisines</span></h2>
+                        <p>Discover a world of flavors with our diverse range of culinary experts</p>
+                    </div>
+                    
+                    <div class="cuisine-grid">
+                        <div class="cuisine-card">
+                            <div class="cuisine-icon">
+                                <i data-feather="file"></i>
+                            </div>
+                            <h3>Italian</h3>
+                            <p>Experience the rich flavors of traditional Italian cuisine</p>
+                        </div>
+                        <div class="cuisine-card">
+                            <div class="cuisine-icon">
+                                <i data-feather="file"></i>
+                            </div>
+                            <h3>French</h3>
+                            <p>Indulge in the elegance of French gastronomy</p>
+                        </div>
+                        <div class="cuisine-card">
+                            <div class="cuisine-icon">
+                                <i data-feather="file"></i>
+                            </div>
+                            <h3>Indian</h3>
+                            <p>Discover the aromatic spices and diverse flavors of India</p>
+                        </div>
+                        <div class="cuisine-card">
+                            <div class="cuisine-icon">
+                                <i data-feather="file"></i>
+                            </div>
+                            <h3>Japanese</h3>
+                            <p>Enjoy the precision and artistry of Japanese cuisine</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary" data-page="cuisines">Explore All Cuisines</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="home-how-it-works">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>How It <span class="highlight">Works</span></h2>
+                        <p>Book your perfect culinary experience in a few simple steps</p>
+                    </div>
+                    
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Browse Chef Profiles</h3>
+                                <p>Explore our diverse collection of talented chefs with various cuisines and specialties.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Choose Your Service</h3>
+                                <p>Select from private dining, catering, cooking classes, or meal preparation services.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Submit Your Request</h3>
+                                <p>Fill out our booking form with your event details and preferences.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary" data-page="how-it-works">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="home-testimonials">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>What Our <span class="highlight">Customers</span> Say</h2>
+                        <p>Read about the experiences of our satisfied clients</p>
+                    </div>
+                    
+                    <div class="testimonial-preview">
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                <p>"Chef Alessandro created an unforgettable dining experience for my anniversary dinner. The food was exceptional and the service impeccable. He took care of everything from preparation to cleanup, and the personalized menu he created based on our preferences was simply outstanding."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>Sophia Rodriguez</h4>
+                                    <p>Chennai</p>
+                                </div>
+                                <div class="testimonial-rating">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary" data-page="testimonials">View All Testimonials</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Chefs Section -->
+        <section id="chefs-section" class="page-section" data-page="chefs">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Our <span class="highlight">Chefs</span></h1>
+                    <p>Discover and book talented culinary professionals</p>
+                </div>
+                
+                <div class="filters mb-xl">
+                    <div class="filter-group">
+                        <label for="cuisine-filter">Cuisine:</label>
+                        <select id="cuisine-filter">
+                            <option value="all">All Cuisines</option>
+                            <option value="italian">Italian</option>
+                            <option value="french">French</option>
+                            <option value="indian">Indian</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="mexican">Mexican</option>
+                            <option value="mediterranean">Mediterranean</option>
+                            <option value="middle-eastern">Middle Eastern</option>
+                            <option value="asian">Asian</option>
+                            <option value="vegetarian">Vegetarian</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="speciality-filter">Speciality:</label>
+                        <select id="speciality-filter">
+                            <option value="all">All Specialities</option>
+                            <option value="pasta">Pasta</option>
+                            <option value="seafood">Seafood</option>
+                            <option value="pastry">Pastry</option>
+                            <option value="fine-dining">Fine Dining</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="curry">Curry</option>
+                            <option value="sushi">Sushi</option>
+                            <option value="bbq">BBQ</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="rating-filter">Rating:</label>
+                        <select id="rating-filter">
+                            <option value="all">Any Rating</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4+ Stars</option>
+                            <option value="3">3+ Stars</option>
+                        </select>
+                    </div>
+                    
+                    <button id="filter-reset" class="btn btn-outline-sm">Reset Filters</button>
+                </div>
+                
+                <div class="chefs-grid">
+                    <!-- Chef Card 1 -->
+                    <div class="chef-card" data-cuisine="italian,mediterranean" data-speciality="pasta,seafood" data-rating="5">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1677&q=80" alt="Chef Alessandro">
+                            <div class="rating">★★★★★ 5.0</div>
+                        </div>
+                        <div class="chef-info">
+                            <h3>Chef Alessandro</h3>
+                            <div class="cuisine-tags">
+                                <span>Italian</span>
+                                <span>Mediterranean</span>
+                            </div>
+                            <p class="experience">15 years experience • Worked in Michelin-starred restaurants</p>
+                            <p class="bio">Specializes in authentic Italian cuisine with a modern twist, focusing on fresh, seasonal ingredients and traditional techniques.</p>
+                            <div class="chef-footer">
+                                <span class="price">From $150/event</span>
+                                <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Alessandro">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chef Card 2 -->
+                    <div class="chef-card" data-cuisine="french,european" data-speciality="pastry,fine-dining" data-rating="5">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Chef Sophie">
+                            <div class="rating">★★★★★ 5.0</div>
+                        </div>
+                        <div class="chef-info">
+                            <h3>Chef Sophie</h3>
+                            <div class="cuisine-tags">
+                                <span>French</span>
+                                <span>European</span>
+                            </div>
+                            <p class="experience">12 years experience • Trained in Paris</p>
+                            <p class="bio">Expert in French gastronomy with a passion for pastry and desserts. Creates memorable dining experiences with elegant presentation.</p>
+                            <div class="chef-footer">
+                                <span class="price">From $180/event</span>
+                                <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Sophie">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chef Card 3 -->
+                    <div class="chef-card" data-cuisine="indian,asian" data-speciality="vegetarian,curry" data-rating="4">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Chef Priya">
+                            <div class="rating">★★★★☆ 4.8</div>
+                        </div>
+                        <div class="chef-info">
+                            <h3>Chef Priya</h3>
+                            <div class="cuisine-tags">
+                                <span>Indian</span>
+                                <span>Vegetarian</span>
+                            </div>
+                            <p class="experience">10 years experience • Specialty in vegetarian cuisine</p>
+                            <p class="bio">Specializes in authentic Indian flavors with a focus on vegetarian and vegan options. Expert in spice blending and regional specialties.</p>
+                            <div class="chef-footer">
+                                <span class="price">From $120/event</span>
+                                <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Priya">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chef Card 4 -->
+                    <div class="chef-card" data-cuisine="japanese,asian" data-speciality="sushi,seafood" data-rating="5">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1746&q=80" alt="Chef Hiroshi">
+                            <div class="rating">★★★★★ 5.0</div>
+                        </div>
+                        <div class="chef-info">
+                            <h3>Chef Hiroshi</h3>
+                            <div class="cuisine-tags">
+                                <span>Japanese</span>
+                                <span>Asian</span>
+                            </div>
+                            <p class="experience">18 years experience • Traditional training in Tokyo</p>
+                            <p class="bio">Master of Japanese cuisine with expertise in sushi, sashimi, and traditional Japanese cooking techniques. Focuses on precision and authenticity.</p>
+                            <div class="chef-footer">
+                                <span class="price">From $200/event</span>
+                                <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Hiroshi">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chef Card 5 -->
+                    <div class="chef-card" data-cuisine="mexican,latin" data-speciality="bbq,vegetarian" data-rating="4">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1607631568010-a87245c0dbd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Chef Carlos">
+                            <div class="rating">★★★★☆ 4.7</div>
+                        </div>
+                        <div class="chef-info">
+                            <h3>Chef Carlos</h3>
+                            <div class="cuisine-tags">
+                                <span>Mexican</span>
+                                <span>Latin American</span>
+                            </div>
+                            <p class="experience">9 years experience • Specialty in authentic Mexican cuisine</p>
+                            <p class="bio">Passionate about showcasing the regional diversity of Mexican cuisine. Expert in traditional cooking techniques and uses authentic ingredients.</p>
+                            <div class="chef-footer">
+                                <span class="price">From $130/event</span>
+                                <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Carlos">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chef Card 6 -->
+                    <div class="chef-card" data-cuisine="mediterranean,middle-eastern" data-speciality="vegetarian,seafood" data-rating="4">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1604459839257-158e3e7e05d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1667&q=80" alt="Chef Elena">
+                            <div class="rating">★★★★☆ 4.9</div>
+                        </div>
+                        <div class="chef-info">
+                            <h3>Chef Elena</h3>
+                            <div class="cuisine-tags">
+                                <span>Mediterranean</span>
+                                <span>Middle Eastern</span>
+                            </div>
+                            <p class="experience">14 years experience • Family-taught traditions</p>
+                            <p class="bio">Specializes in the healthy and vibrant flavors of Mediterranean cuisine. Expert in mezze, seafood, and olive oil-based dishes.</p>
+                            <div class="chef-footer">
+                                <span class="price">From $140/event</span>
+                                <a href="#" class="btn btn-outline-sm book-chef" data-chef="Chef Elena">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+         
+        <section id="how-it-works-section" class="page-section" data-page="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h1>How It <span class="highlight">Works</span></h1>
+                    <p>Book your perfect culinary experience in a few simple steps</p>
+                </div>
+                
+                <div class="process-container">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Browse Our Chef Selection</h3>
+                            <p>Explore our diverse collection of talented chefs, filtering by cuisine type, specialization, or customer ratings to find the perfect match for your needs.</p>
+                            <i data-feather="search" class="step-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Choose Your Service</h3>
+                            <p>Select from our range of services including private dining, catering for events, cooking classes, or meal preparation according to your requirements.</p>
+                            <i data-feather="check-circle" class="step-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Book Your Date</h3>
+                            <p>Choose your preferred date and time for the service. Our system will check the chef's availability and confirm your booking instantly.</p>
+                            <i data-feather="calendar" class="step-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Customize Your Experience</h3>
+                            <p>Work directly with your chosen chef to customize the menu, accommodate dietary restrictions, and plan all the details of your culinary experience.</p>
+                            <i data-feather="edit" class="step-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Enjoy Your Culinary Experience</h3>
+                            <p>Relax and enjoy as your professional chef handles everything from preparation to service and cleanup, creating an unforgettable culinary experience.</p>
+                            <i data-feather="check-square" class="step-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-types">
+                    <h2>Our <span class="highlight">Services</span></h2>
+                    
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i data-feather="briefcase"></i>
+                            </div>
+                            <h3>Private Dining</h3>
+                            <p>Experience restaurant-quality dining in the comfort of your home. Our chefs will create a personalized menu, prepare the dishes in your kitchen, serve each course, and clean up afterward.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i data-feather="arrow-right"></i>
+                            </div>
+                            <h3>Event Catering</h3>
+                            <p>Perfect for celebrations, corporate events, or special occasions. Our chefs will work with you to create a menu that suits your event theme and guest preferences.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i data-feather="edit"></i>
+                            </div>
+                            <h3>Cooking Classes</h3>
+                            <p>Learn culinary skills from experienced professionals. Whether you're a beginner or looking to refine your techniques, our chefs offer personalized cooking lessons for individuals or groups.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i data-feather="plus-square"></i>
+                            </div>
+                            <h3>Meal Preparation</h3>
+                            <p>Have a busy schedule? Our chefs can prepare multiple meals for the week, package them for easy reheating, and stock your refrigerator with nutritious and delicious options.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <h2>Ready to Experience Culinary Excellence?</h2>
+                    <p>Book a chef today and enjoy a personalized dining experience</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary" data-page="chefs">Browse Chefs</a>
+                        <a href="#" class="btn btn-outline" data-page="contact">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cuisines Section -->
+        <section id="cuisines-section" class="page-section" data-page="cuisines">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Explore <span class="highlight">Cuisines</span></h1>
+                    <p>Discover a world of flavors with our diverse range of culinary experts</p>
+                </div>
+                
+                <div class="cuisines-grid">
+                    <div class="cuisine-card">
+                        <div class="cuisine-image">
+                            <img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Italian Cuisine">
+                        </div>
+                        <div class="cuisine-info">
+                            <h3>Italian Cuisine</h3>
+                            <p>Experience the rich flavors of Italy with authentic pasta, pizza, risotto, and traditional regional specialties prepared by our expert Italian chefs.</p>
+                            <a href="#" class="btn btn-outline-sm cuisine-filter-btn" data-cuisine="italian">Find Italian Chefs</a>
+                        </div>
+                    </div>
+                    
+                    <div class="cuisine-card">
+                        <div class="cuisine-image">
+                            <img src="https://images.unsplash.com/photo-1414541944151-2f3ec1cfd87d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80" alt="French Cuisine">
+                        </div>
+                        <div class="cuisine-info">
+                            <h3>French Cuisine</h3>
+                            <p>Indulge in the elegance of French gastronomy with classic dishes prepared with precision and artistry by our trained French culinary experts.</p>
+                            <a href="#" class="btn btn-outline-sm cuisine-filter-btn" data-cuisine="french">Find French Chefs</a>
+                        </div>
+                    </div>
+                    
+                    <div class="cuisine-card">
+                        <div class="cuisine-image">
+                            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80" alt="Indian Cuisine">
+                        </div>
+                        <div class="cuisine-info">
+                            <h3>Indian Cuisine</h3>
+                            <p>Discover the aromatic spices and diverse flavors of Indian cuisine, from creamy curries to tandoori specialties and regional delicacies.</p>
+                            <a href="#" class="btn btn-outline-sm cuisine-filter-btn" data-cuisine="indian">Find Indian Chefs</a>
+                        </div>
+                    </div>
+                    
+                    <div class="cuisine-card">
+                        <div class="cuisine-image">
+                            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Japanese Cuisine">
+                        </div>
+                        <div class="cuisine-info">
+                            <h3>Japanese Cuisine</h3>
+                            <p>Enjoy the precision and artistry of Japanese cuisine, from perfectly crafted sushi and sashimi to comforting ramen and traditional kaiseki experiences.</p>
+                            <a href="#" class="btn btn-outline-sm cuisine-filter-btn" data-cuisine="japanese">Find Japanese Chefs</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cuisine-cta">
+                    <h2>Can't Find Your Preferred Cuisine?</h2>
+                    <p>Contact us for special requests or to inquire about other cuisines not listed here.</p>
+                    <a href="#" class="btn btn-primary" data-page="contact">Contact Us</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section id="testimonials-section" class="page-section" data-page="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h1>What Our <span class="highlight">Customers</span> Say</h1>
+                    <p>Read about the experiences of our satisfied clients</p>
+                </div>
+                
+                <div class="testimonials-container">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sophia Rodriguez">
+                            </div>
+                            <div class="testimonial-author">
+                                <h3>Sophia Rodriguez</h3>
+                                <p>Chennai</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            <p>"Chef Alessandro created an unforgettable dining experience for my anniversary dinner. The food was exceptional and the service impeccable. He took care of everything from preparation to cleanup, and the personalized menu he created based on our preferences was simply outstanding. We felt like we were dining at a five-star restaurant in our own home!"</p>
+                        </div>
+                        <div class="testimonial-date">
+                            <p>October 15, 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Raj Patel">
+                            </div>
+                            <div class="testimonial-author">
+                                <h3>Raj Patel</h3>
+                                <p>Bangalore</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            <p>"We hired Chef Priya for a family gathering of 15 people, and she exceeded all our expectations. Her authentic Indian cuisine with a modern twist was a hit with everyone, from the youngest to the oldest guests. She accommodated all our dietary restrictions seamlessly and the presentation was beautiful. The flavors were incredible and everyone is still talking about the meal weeks later!"</p>
+                        </div>
+                        <div class="testimonial-date">
+                            <p>September 28, 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Michael Chen">
+                            </div>
+                            <div class="testimonial-author">
+                                <h3>Michael Chen</h3>
+                                <p>Hyderabad</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            <p>"The cooking class with Chef Hiroshi was such a wonderful experience! He was patient, knowledgeable, and made learning the techniques of Japanese cuisine so approachable. I've always been intimidated by making sushi at home, but his step-by-step guidance gave me the confidence to try it myself. It was not only educational but also really fun. I've already booked another class!"</p>
+                        </div>
+                        <div class="testimonial-date">
+                            <p>October 5, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="share-experience">
+                    <h2>Share Your Experience</h2>
+                    <p>Had a great experience with one of our chefs? We'd love to hear from you!</p>
+                    <a href="#" class="btn btn-primary" data-page="contact">Submit Your Testimonial</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact-section" class="page-section" data-page="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Get in <span class="highlight">Touch</span></h1>
+                    <p>Book a chef or inquire about our services</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-form-container">
+                        <h2>Book a Chef</h2>
+                        <div id="selected-chef-container" style="display: none;">
+                            <p class="selected-chef">You're booking: <strong id="selected-chef-name"></strong></p>
+                        </div>
+                        
+                        <form id="booking-form">
+                            <div class="form-group">
+                                <label for="name">Full Name*</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Your full name" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address*</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Your email address" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number*</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your phone number" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="service_type">Service Type*</label>
+                                    <select id="service_type" name="service_type" class="form-control" required>
+                                        <option value="" disabled selected>Select a service</option>
+                                        <option value="private_dining">Private Dining</option>
+                                        <option value="catering">Catering</option>
+                                        <option value="cooking_class">Cooking Class</option>
+                                        <option value="meal_prep">Meal Preparation</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="event_date">Event Date*</label>
+                                    <input type="date" id="event_date" name="event_date" class="form-control date-picker" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="guest_count">Number of Guests*</label>
+                                    <input type="number" id="guest_count" name="guest_count" class="form-control" placeholder="Number of guests" min="1" max="500" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="budget">Budget (in $)*</label>
+                                    <input type="number" id="budget" name="budget" class="form-control" placeholder="Your budget" min="50" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Meal Preference*</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="vegetarian" name="meal_preference" value="vegetarian" required>
+                                        <label for="vegetarian">Vegetarian</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="non_vegetarian" name="meal_preference" value="non_vegetarian">
+                                        <label for="non_vegetarian">Non-Vegetarian</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="vegan" name="meal_preference" value="vegan">
+                                        <label for="vegan">Vegan</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="mixed" name="meal_preference" value="mixed">
+                                        <label for="mixed">Mixed (Both Veg & Non-Veg)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dietary_restrictions">Dietary Restrictions/Allergies</label>
+                                <textarea id="dietary_restrictions" name="dietary_restrictions" class="form-control" placeholder="List any dietary restrictions or allergies"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="special_requests">Special Requests or Details</label>
+                                <textarea id="special_requests" name="special_requests" class="form-control" placeholder="Any special requests or additional details we should know"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Submit Booking Request</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h2>Contact Information</h2>
+                        <div class="contact-method">
+                            <i data-feather="mail"></i>
+                            <div>
+                                <h3>Email Us</h3>
+                                <p><a href="mailto:info@cookcrafted.com">info@cookcrafted.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i data-feather="phone"></i>
+                            <div>
+                                <h3>Call Us</h3>
+                                <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i data-feather="clock"></i>
+                            <div>
+                                <h3>Business Hours</h3>
+                                <p>Monday - Friday: 9am - 6pm</p>
+                                <p>Saturday: 10am - 4pm</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-socials">
+                            <h3>Connect With Us</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Facebook">
+                                    <i data-feather="facebook"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <i data-feather="instagram"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Twitter">
+                                    <i data-feather="twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>CookCrafted</span>
+                    <p>Connecting talented chefs with food lovers for exceptional culinary experiences.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="chefs">Chefs</a></li>
+                        <li><a href="#" data-page="how-it-works">How It Works</a></li>
+                        <li><a href="#" data-page="cuisines">Cuisines</a></li>
+                        <li><a href="#" data-page="testimonials">Testimonials</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#" data-page="how-it-works">Private Dining</a></li>
+                        <li><a href="#" data-page="how-it-works">Event Catering</a></li>
+                        <li><a href="#" data-page="how-it-works">Cooking Classes</a></li>
+                        <li><a href="#" data-page="how-it-works">Meal Preparation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><a href="mailto:info@cookcrafted.com">info@cookcrafted.com</a></p>
+                    <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <i data-feather="facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i data-feather="instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <i data-feather="twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 CookCrafted. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i data-feather="chevron-up"></i>
+    </button>
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-login">&times;</span>
+            <div class="auth-container">
+                <div class="section-header">
+                    <h2>Welcome <span class="highlight">Back</span></h2>
+                    <p>Sign in to your CookCrafted account</p>
+                </div>
+                
+                <div class="auth-form-container">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" name="email" class="form-control" placeholder="Your email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <div class="password-input-group">
+                                <input type="password" id="login-password" name="password" class="form-control" placeholder="Your password" required>
+                                <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                    <i data-feather="eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group remember-forgot">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Remember Me</label>
+                            </div>
+                            <a href="#" id="forgot-password-link" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <div class="auth-redirect">
+                        <p>Don't have an account? <a href="#" id="register-redirect">Register Now</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-register">&times;</span>
+            <div class="auth-container">
+                <div class="section-header">
+                    <h2>Create an <span class="highlight">Account</span></h2>
+                    <p>Join CookCrafted to book your perfect culinary experience</p>
+                </div>
+                
+                <div class="auth-form-container">
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Choose a username" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-email">Email Address</label>
+                            <input type="email" id="register-email" name="email" class="form-control" placeholder="Your email address" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <div class="password-input-group">
+                                    <input type="password" id="register-password" name="password" class="form-control" placeholder="Create a password" required>
+                                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                        <i data-feather="eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <div class="password-input-group">
+                                    <input type="password" id="confirm-password" name="confirm_password" class="form-control" placeholder="Confirm your password" required>
+                                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                        <i data-feather="eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group terms-agreement">
+                            <input type="checkbox" id="accept-terms" name="accept_terms" required>
+                            <label for="accept-terms">I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a></label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                        </div>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <div class="auth-redirect">
+                        <p>Already have an account? <a href="#" id="login-redirect">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Forgot Password Modal -->
+    <div id="forgot-password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-forgot">&times;</span>
+            <div class="auth-container">
+                <div class="section-header">
+                    <h2>Forgot <span class="highlight">Password</span></h2>
+                    <p>Enter your email to reset your password</p>
+                </div>
+                        <div class="form-group">
+                            <label for="forgot-email">Email Address</label>
+                            <input type="email" id="forgot-email" name="email" class="form-control" placeholder="Your email address" required>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                        </div>
+
+                        0
+                        
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <div class="auth-redirect">
+                        <p>Remember your password? <a href="#" id="back-to-login">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-success">&times;</span>
+            <div class="success-container">
+                <div class="success-icon">
+                    <i data-feather="check-circle"></i>
+                </div>
+                <h2>Thank You!</h2>
+                <p id="success-message">Your request has been submitted successfully.</p>
+                <button class="btn btn-primary" id="success-ok">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feather Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+</body>
+</html>
